@@ -16,9 +16,17 @@ export default class MultipleImageUploadComponent extends Component {
 
     uploadMultipleFiles(e) {
         this.fileObj.push(e.target.files)
-        for (let i = 0; i < this.fileObj[0].length; i++) {
-            this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
-        }
+        console.log(this.fileObj)
+        // for (let i = 0; i < this.fileObj[0].length; i++) {
+        //     this.fileArray.push(URL.createObjectURL(this.fileObj[0][i]))
+        // }
+       while(this.fileObj.length){
+           const item = this.fileObj.pop();
+           for(let i = 0; i < item.length; i++){
+            this.fileArray.push(URL.createObjectURL(item[i]))
+           }
+
+       }
         this.setState({ file: this.fileArray })
     }
 
